@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+<nav class="nav-extended indigo darken-4">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img src="imgs/miniLogo.png" alt="logo"></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="product-form.html"><i class="material-icons">file_upload</i></a></li>
+                <li><a href="#"><i class="material-icons">mode_edit</i></a></li>
+                <li><a href="#"><i class="material-icons">exit_to_app</i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="product-form.html">Product Form</a></li>
+                <li><a href="#">Manager</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="#test1">Users</a></li>
+                <li class="tab"><a href="#test2">Product</a></li>
+                <li class="tab"><a href="#test3">Brand</a></li>
+                <li class="tab"><a href="#test4">Category</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<main class="container" style="margin-top: 30px">
+    <div id="test1" class="col s12">
+        <h4>User Manager</h4>
+        <table class="striped responsive-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Full Name</th>
+                    <th>Birthday</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="user-table">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="test2" class="col s12">
+        <h4>Product Manager</h4>
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Price</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Big Img 1</th>
+                <th>Big Img 2</th>
+                <th>Small Img 1</th>
+                <th>Small Img 2</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody id="product-table">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="test3" class="col s12">
+        <h4>Brand Manager</h4>
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody id="brand-table">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="test4" class="col s12">
+        <h4>Category Manager</h4>
+        <table class="striped responsive-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody id="category-table">
+
+            </tbody>
+        </table>
+    </div>
+</main>
+<input type="hidden" id="list-brand">
+<input type="hidden" id="list-category">
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/manager.js"></script>
+
+</body>
+</html>
