@@ -295,6 +295,36 @@ function uploadImg(e, target1, target2) {
         }
     });
 }
+
+function updateProduct() {
+    var updateObject = {
+        name: document.querySelector('#product-name').value,
+        productCode: document.querySelector('#product-code').value,
+        brandId: document.querySelector('#product-brand').value,
+        categoryId: document.querySelector('#product-category').value,
+        shortDetail: document.querySelector('#product-short-detail').value,
+        description: document.querySelector('#product-description').value,
+        images: {
+            bigImgs: [document.querySelector('#big-1-url').value,document.querySelector('#big-2-url').value],
+            smallImgs: [document.querySelector('#small-1-url').value,document.querySelector('#small-2-url').value]
+        },
+        price: document.querySelector('#product-price').value
+    };
+    var req = new XMLHttpRequest();
+    req.open('PUT', productApi + document.querySelector('#product-id').value, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader('token', localStorage.getItem('token'));
+    req.onload = function () {
+        var res = JSON.parse(this.responseText);
+        console.log(res);
+    };
+    req.onerror = function () {
+        var res = JSON.parse(this.responseText);
+        console.log(res);
+    };
+    req.send(JSON.stringify(updateObject));
+}
+
 function previewImg(url, target) {
     target.src = url;
 }
