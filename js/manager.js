@@ -71,6 +71,7 @@ function loadAllBrand() {
         var listBrands = JSON.parse(document.querySelector("#list-brand").value);
         var brand = {};
         for (var i=0; i<res.length; i++) {
+            createAnOption(res[i]._id, res[i].name, document.querySelector('#product-brand'));
             brand = {
                 'name': res[i].name,
                 'value': res[i]._id
@@ -79,6 +80,7 @@ function loadAllBrand() {
             createBrandRow(res[i], document.querySelector('#brand-table'));
         }
         document.querySelector("#list-brand").value = JSON.stringify(listBrands);
+        $('#product-brand').material_select();
     };
     req.onerror = function () {
         var res = JSON.parse(this.responseText);
@@ -117,6 +119,7 @@ function loadAllCategory() {
         var listCategory = JSON.parse(document.querySelector("#list-category").value);
         category = {};
         for (var i=0; i<res.length; i++) {
+            createAnOption(res[i]._id, res[i].name, document.querySelector('#product-category'));
             category = {
                 name: res[i].name,
                 value: res[i]._id
@@ -125,6 +128,7 @@ function loadAllCategory() {
             createCategoryRow(res[i], document.querySelector('#category-table'));
         }
         document.querySelector("#list-category").value = JSON.stringify(listCategory);
+        $('#product-category').material_select();
     };
     req.onerror = function () {
         var res = JSON.parse(this.responseText);
@@ -253,6 +257,7 @@ function compareNameVal(input, target, value) {
 }
 
 function bindProductToForm(data) {
+    var event = new Event('change');
     document.querySelector('#product-id').value = data._id;
     document.querySelector('#product-name').value = data.name;
     document.querySelector('#product-code').value = data.productCode;
@@ -262,7 +267,11 @@ function bindProductToForm(data) {
 
     document.querySelector('#product-price').value = data.price;
     document.querySelector('#product-brand').value = data.brandId;
+    document.querySelector('#product-brand').dispatchEvent(event);
+
     document.querySelector('#product-category').value = data.categoryId;
+    document.querySelector('#product-category').dispatchEvent(event);
+
     document.querySelector('#product-price').value = data.price;
     document.querySelector('#big-1-url').value = data.images.bigImgs[0];
     document.querySelector('#big-1-preview').src = data.images.bigImgs[0];
@@ -301,6 +310,13 @@ function previewImg(url, target) {
 function bindValueUrl(url, target) {
     target.value = url;
 }
+
+function createAnOption(value, name, el) {
+    var option = document.createElement('option');
+    option.value = value;
+    option.innerHTML = name;
+    el.appendChild(option);
+}
 $(document).ready(function () {
     var listBrands = [{
         'name':'brand',
@@ -327,7 +343,6 @@ $(document).ready(function () {
     loadAllCategory();
     loadAllProduct();
     $('.modal').modal();
-    $('select').material_select();
     $("#big-1-file").change(function(e) {
         uploadImg(e, document.querySelector('#big-1-preview'), document.querySelector("#big-1-url"));
     });
