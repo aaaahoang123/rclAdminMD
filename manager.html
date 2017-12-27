@@ -119,6 +119,125 @@
         </table>
     </div>
 </main>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#edit-product-modal">Modal</a>
+
+<!-- Modal Structure -->
+<section id="edit-product-modal" class="modal">
+    <div class="modal-content">
+        <h4>Edit Product</h4>
+        <div class="row">
+            <form class="col s12" name="product-form">
+                <input type="hidden" id="product-id">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Name of product" id="product-name" type="text" class="validate">
+                        <label for="product-name">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="product-code" placeholder="Product Code" type="text" class="validate">
+                        <label for="product-code">Code</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Short detail of product" id="product-short-detail" type="text" class="validate">
+                        <label for="product-short-detail">Short Detail</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Product's Price" id="product-price" type="text" class="validate">
+                        <label for="product-price">Price</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="product-description" placeholder="Description here" class="materialize-textarea"></textarea>
+                        <label for="product-description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="product-brand">
+                            <option disabled>Select Brand</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                        </select>
+                        <label>Brand</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="product-category">
+                            <option disabled>Select Category</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                        </select>
+                        <label>Category</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field col s6">
+                        <div class="btn">
+                            <span>Big Img 1</span>
+                            <input type="file" id="big-1-file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" id="big-1-url">
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s6">
+                        <div class="btn">
+                            <span>Small Img 1</span>
+                            <input type="file" id="small-1-file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" id="small-1-url">
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s6">
+                        <div class="btn">
+                            <span>Big Img 2</span>
+                            <input type="file" id="big-2-file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" id="big-2-url">
+                        </div>
+                    </div>
+
+                    <div class="file-field input-field col s6">
+                        <div class="btn">
+                            <span>Small Img 2</span>
+                            <input type="file" id="small-2-file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" id="small-2-url">
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <span>Big IMG 1 Preview</span>
+                        <img src="" style="width: 100%" id="big-1-preview">
+                    </div>
+                    <div class="col s3">
+                        <span>Big IMG 2 Preview</span>
+                        <img src="" style="width: 100%" id="big-2-preview">
+                    </div>
+                    <div class="col s3">
+                        <span>Small IMG 1 Preview</span>
+                        <img src="" style="width: 100%" id="small-1-preview">
+                    </div>
+                    <div class="col s3">
+                        <span>Small IMG 2 Preview</span>
+                        <img src="" style="width: 100%" id="small-2-preview">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</section>
+
 <input type="hidden" id="list-brand">
 <input type="hidden" id="list-category">
 
@@ -127,6 +246,5 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/manager.js"></script>
-
 </body>
 </html>

@@ -222,6 +222,9 @@ function createProductRow(data, el) {
     var actionBtn = document.createElement('a');
     actionBtn.className =  "waves-effect waves-teal btn-flat";
     actionBtn.innerHTML = "Edit";
+    actionBtn.onclick = function () {
+        bindProductToForm(data);
+    };
 
     var actionBtnCol =  document.createElement('td');
     actionBtnCol.appendChild(actionBtn);
@@ -248,6 +251,56 @@ function compareNameVal(input, target, value) {
         }
     }
 }
+
+function bindProductToForm(data) {
+    document.querySelector('#product-id').value = data._id;
+    document.querySelector('#product-name').value = data.name;
+    document.querySelector('#product-code').value = data.productCode;
+    document.querySelector('#product-short-detail').value = data.shortDetail;
+    document.querySelector('#product-description').value = data.description;
+    // $("#product-description").val(data.description).change();
+
+    document.querySelector('#product-price').value = data.price;
+    document.querySelector('#product-brand').value = data.brandId;
+    document.querySelector('#product-category').value = data.categoryId;
+    document.querySelector('#product-price').value = data.price;
+    document.querySelector('#big-1-url').value = data.images.bigImgs[0];
+    document.querySelector('#big-1-preview').src = data.images.bigImgs[0];
+    document.querySelector('#big-2-url').value = data.images.bigImgs[1];
+    document.querySelector('#big-2-preview').src = data.images.bigImgs[1];
+    document.querySelector('#small-1-url').value = data.images.smallImgs[0];
+    document.querySelector('#small-1-preview').src = data.images.smallImgs[0];
+    document.querySelector('#small-2-url').value = data.images.smallImgs[1];
+    document.querySelector('#small-2-preview').src = data.images.smallImgs[1];
+    $("#edit-product-modal").modal('open');
+}
+
+function uploadImg(e, target1, target2) {
+    var img = new FormData();
+    img.append('file', e.target.files[0]);
+    img.append('upload_preset', 'gwq6ik7v');
+    $.ajax({
+        url: uploadImgApi,
+        type: "POST",
+        data: img,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response){
+            previewImg(response.secure_url, target1);
+            bindValueUrl(response.secure_url, target2);
+        },
+        error: function(response, message){
+            console.log(response);
+        }
+    });
+}
+function previewImg(url, target) {
+    target.src = url;
+}
+function bindValueUrl(url, target) {
+    target.value = url;
+}
 $(document).ready(function () {
     var listBrands = [{
         'name':'brand',
@@ -273,4 +326,18 @@ $(document).ready(function () {
     loadAllBrand();
     loadAllCategory();
     loadAllProduct();
+    $('.modal').modal();
+    $('select').material_select();
+    $("#big-1-file").change(function(e) {
+        uploadImg(e, document.querySelector('#big-1-preview'), document.querySelector("#big-1-url"));
+    });
+    $("#big-2-file").change(function(e) {
+        uploadImg(e, document.querySelector('#big-2-preview'), document.querySelector("#big-2-url"));
+    });
+    $("#small-1-file").change(function(e) {
+        uploadImg(e, document.querySelector('#small-1-preview'), document.querySelector("#small-1-url"));
+    });
+    $("#small-2-file").change(function(e) {
+        uploadImg(e, document.querySelector('#small-2-preview'), document.querySelector("#small-2-url"));
+    });
 });
