@@ -153,15 +153,52 @@ function createCategoryRow(data, el) {
     el.appendChild(row);
 }
 
-function loadAllProduct() {
+function loadAllProduct(page) {
+    var mypage = 1;
+    if (page!==undefined) mypage = page;
     var req = new XMLHttpRequest();
-    req.open("GET", productApi, true);
+    req.open("GET", productApi + '?page=' + mypage, true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.onload = function () {
         var res = JSON.parse(this.responseText);
+        document.querySelector('#product-table').innerHTML = "";
+        document.querySelector("#product-pagination").innerHTML = "";
         for (var i=0; i<res.items.length; i++) {
             createProductRow(res.items[i], document.querySelector('#product-table'));
         }
+        var prevAnchor = document.createElement('a');
+        prevAnchor.innerHTML = '<i class="material-icons">chevron_left</i>';
+        var prevList = document.createElement("li");
+        if (mypage===1) {
+            prevAnchor.href = "#!";
+            prevList.className = "disabled";
+        }
+        else {
+            prevAnchor.onclick = function () {
+                loadAllProduct(mypage - 1);
+            };
+            prevList.className = "waves-effect";
+        }
+        prevList.appendChild(prevAnchor);
+        document.querySelector("#product-pagination").appendChild(prevList);
+        for (i=0; i<res.totalPage; i++) {
+            createPagination(mypage, i, document.querySelector("#product-pagination"));
+        }
+        var nextAnchor = document.createElement('a');
+        nextAnchor.innerHTML = '<i class="material-icons">chevron_right</i>';
+        var nextList = document.createElement("li");
+        if (mypage===res.totalPage) {
+            nextAnchor.href = "#!";
+            nextList.className = "disabled";
+        }
+        else {
+            nextAnchor.onclick = function () {
+                loadAllProduct(mypage + 1);
+            };
+            nextList.className = "waves-effect";
+        }
+        nextList.appendChild(nextAnchor);
+        document.querySelector("#product-pagination").appendChild(nextList);
     };
     req.onerror = function () {
         var res = JSON.parse(this.responseText);
@@ -257,7 +294,7 @@ function compareNameVal(input, target, value) {
 }
 
 function bindProductToForm(data) {
-    var event = new Event('change');
+    var event = new Event('checked');
     document.querySelector('#product-id').value = data._id;
     document.querySelector('#product-name').value = data.name;
     document.querySelector('#product-code').value = data.productCode;
@@ -325,7 +362,8 @@ function updateProduct() {
     req.setRequestHeader('token', localStorage.getItem('token'));
     req.onload = function () {
         var res = JSON.parse(this.responseText);
-        console.log(res);
+        Materialize.toast('Update succesful!', 3000);
+        $('form[name=product-form]').trigger('reset');
     };
     req.onerror = function () {
         var res = JSON.parse(this.responseText);
@@ -340,7 +378,25 @@ function previewImg(url, target) {
 function bindValueUrl(url, target) {
     target.value = url;
 }
+function createPagination(page, index, el) {
+    var anchor = document.createElement('a');
+    anchor.innerHTML = index + 1;
 
+    var list = document.createElement('li');
+    if (page===index+1) {
+        anchor.href = "#!";
+        list.className = "active";
+    }
+    else {
+        anchor.onclick = function () {
+            loadAllProduct(index + 1);
+        };
+        list.className = "waves-effect";
+    }
+    list.appendChild(anchor);
+    el.appendChild(list);
+
+}
 function createAnOption(value, name, el) {
     var option = document.createElement('option');
     option.value = value;

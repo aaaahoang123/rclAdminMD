@@ -3,7 +3,7 @@ const authApi = 'https://rlcapi.herokuapp.com/api/authentication/',
     brandsApi = 'https://rlcapi.herokuapp.com/api/brands/',
     categoryApi = 'https://rlcapi.herokuapp.com/api/categories/',
     userApi = 'https://rlcapi.herokuapp.com/api/user/',
-    orderApi = 'https://rlcapi.herokuapp.com/api/orders/',
+    orderApi = 'https://rlcapi.herokuapp.com/api/orders/?permission=admin',
     uploadImgApi = 'https://api.cloudinary.com/v1_1/fpt-aptech/image/upload';
 
 $(document).ready(function () {

@@ -84,6 +84,15 @@
 
             </tbody>
         </table>
+        <ul class="pagination" id="product-pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
     </div>
     <div id="test3" class="col s12">
         <h4>Brand Manager</h4>
@@ -119,8 +128,6 @@
         </table>
     </div>
 </main>
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#edit-product-modal">Modal</a>
 
 <!-- Modal Structure -->
 <section id="edit-product-modal" class="modal">
@@ -158,13 +165,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <select id="product-brand">
-                            <option disabled>Select Brand</option>
+                            <option disabled selected>Same Brand</option>
                         </select>
                         <label>Brand</label>
                     </div>
                     <div class="input-field col s6">
                         <select id="product-category">
-                            <option disabled>Select Category</option>
+                            <option disabled selected>Same Category</option>
                         </select>
                         <label>Category</label>
                     </div>
@@ -225,11 +232,14 @@
                     </div>
                 </div>
             </form>
-            <button class="waves-effect waves-light btn" onclick="updateProduct()"><i class="material-icons left">cloud</i>update</button>
+            <div class="center-align">
+                <button class="waves-effect waves-light btn" onclick="updateProduct()"><i class="material-icons left">cloud</i>update</button>
+            </div>
+
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </section>
 
